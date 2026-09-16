@@ -1,0 +1,19 @@
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        lp = 0
+        rp = len(heights) - 1
+        depth = 0
+
+        while lp < rp:
+            temp_area = (rp - lp) * min(heights[lp], heights[rp])
+
+            if heights[lp] < heights[rp]:
+                lp += 1
+            elif heights[rp] < heights[lp]:
+                rp -= 1
+            else:
+                lp += 1
+
+            depth = max(depth, temp_area)
+
+        return depth
