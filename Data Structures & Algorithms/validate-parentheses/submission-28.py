@@ -1,0 +1,24 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if s[0] == '}' or s[0] == ')' or s[0] == ']':
+            return False
+
+        matchDict = {"}":"{", ")":"(", "]":"["}
+        stack = []
+
+        for i in range(len(s)):
+            """
+            stack = [([]]
+            if s[i] in stack:
+                if len(stack) > 0 and stack[-1] == matchDict[s[i]]:
+            """
+            if s[i] in matchDict:
+                if len(stack) > 0 and stack[-1] == matchDict[s[i]]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(s[i])
+
+        return True if len(stack) == 0 else False
+            
